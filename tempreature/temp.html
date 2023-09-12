@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('background.jpg'); /* Add your background image URL here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: rgba(60, 179, 113, 0.3); /* Change the background color */
+        }
+        .container {
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background color to the container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow for depth */
+        }
+        h1 {
+            color: #333; /* Change text color to dark gray */
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        /* Add custom styles for the button */
+        button {
+            background-color: #ff5733; /* Change button background color */
+            color: white; /* Change button text color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        /* Add hover effect for the button */
+        button:hover {
+            background-color: #ff8c66; /* Change button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <input type="text" id="temperatureInput" placeholder="Enter temperature" required>
+        <select id="unitSelect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temperatureInput = document.getElementById('temperatureInput').value;
+            const unitSelect = document.getElementById('unitSelect').value;
+            const resultElement = document.getElementById('result');
+            
+            if (isNaN(temperatureInput)) {
+                resultElement.innerText = 'Please enter a valid number.';
+                return;
+            }
+
+            const temperature = parseFloat(temperatureInput);
+
+            if (unitSelect === 'celsius') {
+                const convertedTemperature = (temperature - 32) * 5/9;
+                resultElement.innerText = `${temperature}°F is equal to ${convertedTemperature.toFixed(2)}°C`;
+            } else {
+                const convertedTemperature = (temperature * 9/5) + 32;
+                resultElement.innerText = `${temperature}°C is equal to ${convertedTemperature.toFixed(2)}°F`;
+            }
+        }
+    </script>
+</body>
+</html>
